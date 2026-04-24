@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+
+/* ────────────────────────────────────────
+   Custom Theme (colors + fonts)
+   ──────────────────────────────────────── */
+@theme {
+  /* Custom colors */
+  --color-accent: #22d3ee;
+  --color-dark: #0a0a0a;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Playfair Display", serif;
+}
+
+/* ────────────────────────────────────────
+   Base styles + glassmorphism utility
+   ──────────────────────────────────────── */
+@layer base {
+  body {
+    @apply bg-dark text-slate-200 font-sans;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-slate-900/70 backdrop-blur-md border border-slate-700/50;
+  }
+}
