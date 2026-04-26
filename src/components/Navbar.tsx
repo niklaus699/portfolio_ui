@@ -27,9 +27,9 @@ export default function Navbar({ isAdmin, setIsAdmin, onAddClick }: Props) {
       <div className="max-w-screen-2xl mx-auto px-6 md:px-8 py-5 flex justify-between items-center">
         
         {/* Logo - Tight on mobile */}
-        <Link to="/" className="flex items-center gap-1.5 md:gap-3">
+        <Link to="/" className="flex items-center md:gap-3">
           <span className="text-3xl font-heading tracking-tighter">Nicks Realm</span>
-          <span className="text-accent text-2xl">◉</span>
+          <span className="hidden sm:inlinetext-accent text-2xl">◉</span>
         </Link>
 
         {/* Right side */}
