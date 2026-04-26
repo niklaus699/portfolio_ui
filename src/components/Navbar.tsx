@@ -24,13 +24,13 @@ export default function Navbar({ isAdmin, setIsAdmin, onAddClick }: Props) {
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-700/30"
     >
-      <div className="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between items-center">
-        <Link to="/" className={`flex items-center md:gap-3 ${isAdmin ? 'gap-1 md:gap-3 justify-around' : ''}`}>
+      <div className="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between gap-2 items-center">
+        <Link to="/" className={`flex items-center md:gap-3 ${isAdmin ? 'justify-around' : ''}`}>
           <span className="text-3xl font-heading tracking-tighter">Nicks Realm</span>
           <span className="text-accent text-2xl">◉</span>
         </Link>
 
-        <div className="flex flex-col md:flex-row items-center gap-8">
+        <div className="flex flex-col md:flex-row items-center gap-4">
           {isAdmin && (
           <button
             onClick={onAddClick}   // ← receive this prop from App
