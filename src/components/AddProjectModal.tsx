@@ -173,21 +173,25 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }: Pro
               </div>
 
               {/* === FEATURES SECTION === */}
-              <div>
-                <div className="flex items-center justify-between mb-4">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between sticky top-0 bg-slate-900/90 backdrop-blur-md py-2 z-10 border-b border-slate-700">
                   <label className="block text-xs font-mono text-slate-400">PROJECT FEATURES</label>
                   <button
                     type="button"
                     onClick={addFeature}
-                    className="flex items-center gap-1.5 text-xs font-medium text-accent hover:text-cyan-300"
+                    className="flex items-center gap-1.5 text-xs font-medium text-accent hover:text-cyan-300 px-4 py-2 rounded-2xl hover:bg-slate-800 transition-colors"
                   >
                     <Plus className="w-4 h-4" /> Add Feature
                   </button>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {features.map((feature, index) => (
-                    <div key={index} className="glass rounded-3xl p-5 flex gap-4 items-end">
+                    <div 
+                      key={index} 
+                      className="glass rounded-3xl p-5 md:p-6 flex flex-col md:flex-row gap-4 md:items-end"
+                    >
+                      {/* Label */}
                       <div className="flex-1">
                         <label className="text-xs text-slate-400 block mb-1">Label</label>
                         <input
@@ -198,7 +202,9 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }: Pro
                           className="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-sm"
                         />
                       </div>
-                      <div className="w-28">
+
+                      {/* Icon */}
+                      <div className="md:w-28">
                         <label className="text-xs text-slate-400 block mb-1">Icon</label>
                         <input
                           type="text"
@@ -208,7 +214,9 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }: Pro
                           className="w-full bg-slate-900 border border-slate-700 rounded-2xl px-4 py-3 text-sm"
                         />
                       </div>
-                      <div className="w-32">
+
+                      {/* Variant */}
+                      <div className="md:w-32">
                         <label className="text-xs text-slate-400 block mb-1">Variant</label>
                         <select
                           value={feature.variant}
@@ -221,10 +229,12 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }: Pro
                           <option value="info">Info</option>
                         </select>
                       </div>
+
+                      {/* Delete Button */}
                       <button
                         type="button"
                         onClick={() => removeFeature(index)}
-                        className="text-slate-400 hover:text-red-400 pb-1"
+                        className="text-slate-400 hover:text-red-400 self-end md:self-auto pb-1 md:pb-0"
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>
@@ -232,7 +242,6 @@ export default function AddProjectModal({ isOpen, onClose, onProjectAdded }: Pro
                   ))}
                 </div>
               </div>
-
               {/* Description */}
               <div>
                 <label className="block text-xs font-mono text-slate-400 mb-2">DESCRIPTION (Markdown supported)</label>

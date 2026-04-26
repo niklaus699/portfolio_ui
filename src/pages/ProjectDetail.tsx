@@ -9,8 +9,18 @@ import api from '../api';
 import type { Project } from '../types';
 
 const FeatureBadge = ({ feature }: { feature: any }) => {
-  const IconComponent = feature.icon
-    ? (Lucide[feature.icon as keyof typeof Lucide] as React.ComponentType<any> | undefined)
+  // Convert icon name to PascalCase (e.g. "star" → "Star", "shield-check" → "ShieldCheck")
+  const formatIconName = (name: string) => {
+    if (!name) return null;
+    return name
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join('');
+  };
+
+  const iconName = formatIconName(feature.icon);
+  const IconComponent = iconName 
+    ? (Lucide[iconName as keyof typeof Lucide] as React.ComponentType<any> | undefined)
     : undefined;
 
   const variantStyles: Record<string, string> = {
