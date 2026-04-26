@@ -34,7 +34,7 @@ export default function Navbar({ isAdmin, setIsAdmin, onAddClick }: Props) {
           {isAdmin && (
           <button
             onClick={onAddClick}   // ← receive this prop from App
-            className="flex items-center gap-2 md:px-6 md:py-3 rounded-2xl bg-accent text-black font-medium hover:bg-cyan-300 transition-colors"
+            className="flex items-center gap-2 px-4 py-4 md:px-6 md:py-3 rounded-2xl bg-accent text-black font-medium hover:bg-cyan-300 transition-colors"
           >
             <Plus className="w-4 h-4" />
             Add Project
