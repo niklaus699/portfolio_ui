@@ -24,21 +24,24 @@ export default function Navbar({ isAdmin, setIsAdmin, onAddClick }: Props) {
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 glass border-b border-slate-700/30"
     >
-      <div className="max-w-screen-2xl mx-auto px-8 py-6 flex justify-between gap-2 items-center">
-        <Link to="/" className={`flex items-center md:gap-3 ${isAdmin ? 'justify-around' : ''}`}>
+      <div className="max-w-screen-2xl mx-auto px-6 md:px-8 py-6 flex justify-between items-center">
+        
+        {/* Logo - Compact on mobile, normal gap on desktop */}
+        <Link to="/" className="flex items-center gap-2 md:gap-3">
           <span className="text-3xl font-heading tracking-tighter">Nicks Realm</span>
           <span className="text-accent text-2xl">◉</span>
         </Link>
 
-        <div className="flex flex-col md:flex-row items-center gap-4">
+        {/* Right side controls */}
+        <div className="flex items-center gap-4 md:gap-8">
           {isAdmin && (
-          <button
-            onClick={onAddClick}   // ← receive this prop from App
-            className="flex items-center gap-1 px-2 py-2 md:px-6 md:py-3 rounded-2xl bg-accent text-black font-medium hover:bg-cyan-300 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            Add Project
-          </button>
+            <button
+              onClick={onAddClick}
+              className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-accent text-black font-medium hover:bg-cyan-300 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+              <span className="hidden sm:inline">Add Project</span>
+            </button>
           )}
 
           {!isAdmin ? (
