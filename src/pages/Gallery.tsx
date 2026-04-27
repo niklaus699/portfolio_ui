@@ -139,7 +139,7 @@ export default function Gallery({ isAdmin, refreshKey, setIsAdmin }: Props) {
 
           {/* Controls */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 lg:gap-6 lg:justify-end">
-            <div className="flex items-center gap-3">
+            <div className="flex justify-between items-center w-full gap-3">
               {/* Logout Button - only when admin */}
               {isAdmin && (
                 <button
