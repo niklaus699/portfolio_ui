@@ -1,22 +1,14 @@
 import { motion } from 'framer-motion';
-import { Plus, LogIn, LogOut } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
-import { setAuthToken } from '../api';
+import { Plus, LogIn,} from 'lucide-react';
+import { Link, } from 'react-router-dom';
+
 
 interface Props {
   isAdmin: boolean;
-  setIsAdmin: (val: boolean) => void;
   onAddClick: () => void;
 }
 
-export default function Navbar({ isAdmin, setIsAdmin, onAddClick }: Props) {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    setAuthToken(null);
-    setIsAdmin(false);
-    navigate('/');
-  };
+export default function Navbar({ isAdmin, onAddClick }: Props) {
 
   return (
     <motion.nav 
@@ -44,7 +36,7 @@ export default function Navbar({ isAdmin, setIsAdmin, onAddClick }: Props) {
             </button>
           )}
 
-          {!isAdmin ? (
+          {!isAdmin && (
             <Link
               to="/admin/login"
               className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
@@ -52,14 +44,6 @@ export default function Navbar({ isAdmin, setIsAdmin, onAddClick }: Props) {
               <LogIn className="w-5 h-5" />
               <span className="font-medium">Admin</span>
             </Link>
-          ) : (
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
-            >
-              <LogOut className="w-5 h-5" />
-              <span className="font-medium">Logout</span>
-            </button>
           )}
         </div>
       </div>

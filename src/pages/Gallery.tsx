@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import api from '../api';
+import api, { setAuthToken } from '../api';
 import ProjectCard from '../components/ProjectCard';
 import type { Project } from '../types';
-import { RefreshCw, Loader2 } from 'lucide-react';
+import { RefreshCw, Loader2, LogOut } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const container = {
   hidden: { opacity: 0 },
@@ -24,12 +25,23 @@ const skeletonContainer = {
 interface Props {
   isAdmin: boolean;
   refreshKey: number;
+  setIsAdmin: (v: boolean) => void;
 }
 
-export default function Gallery({ isAdmin, refreshKey }: Props) {
+export default function Gallery({ isAdmin, refreshKey, setIsAdmin }: Props) {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+
+
+  const handleLogout = () => {
+    setAuthToken(null);
+    setIsAdmin(false);
+    navigate('/');
+  };
+  
+
 
   const fetchProjects = async () => {
     setLoading(true);
@@ -128,13 +140,24 @@ export default function Gallery({ isAdmin, refreshKey }: Props) {
 
           {/* Controls - stacked on mobile, right-aligned on desktop */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 lg:gap-6 lg:justify-end">
-            <button
-              onClick={fetchProjects}
-              className="flex items-center gap-2 px-5 py-3 glass rounded-3xl text-sm font-medium hover:text-accent transition-colors w-full sm:w-auto"
-            >
-              <RefreshCw className="w-4 h-4" />
-              Refresh
-            </button>
+            <div className="flex items-center gap-3 justify-between">
+              { isAdmin && (
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+                >
+                <LogOut className="w-5 h-5" />
+                <span className="font-medium">Logout</span>
+              </button>)}
+              <button
+                onClick={fetchProjects}
+                className="flex items-center gap-2 px-5 py-3 glass rounded-3xl text-sm font-medium hover:text-accent transition-colors sm:w-auto"
+              >
+                <RefreshCw className="w-4 h-4" />
+                Refresh
+              </button>
+            </div>
+
             <p className="text-xs text-slate-500 whitespace-nowrap">
               Last updated: {lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </p>
