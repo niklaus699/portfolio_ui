@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import { Plus, LogIn,} from 'lucide-react';
-import { Link, } from 'react-router-dom';
-
+import { Plus, LogIn } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface Props {
   isAdmin: boolean;
@@ -9,7 +8,6 @@ interface Props {
 }
 
 export default function Navbar({ isAdmin, onAddClick }: Props) {
-
   return (
     <motion.nav 
       initial={{ y: -100 }}
@@ -18,18 +16,18 @@ export default function Navbar({ isAdmin, onAddClick }: Props) {
     >
       <div className="max-w-screen-2xl mx-auto px-6 md:px-8 py-5 flex justify-between items-center">
         
-        {/* Logo - Tight on mobile */}
-        <Link to="/" className="flex items-center md:gap-3">
+        {/* Tighter Logo */}
+        <Link to="/" className="flex items-center gap-1 md:gap-2">
           <span className="text-3xl font-heading tracking-tighter">Nicks Realm</span>
-          <span className="hidden sm:inline text-accent text-2xl">◉</span>
+          <span className="text-accent text-2xl">◉</span>
         </Link>
 
-        {/* Right side */}
-        <div className="flex items-center gap-3 md:gap-6">
+        {/* Right side controls */}
+        <div className="flex items-center gap-4">
           {isAdmin && (
             <button
               onClick={onAddClick}
-              className="flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 rounded-2xl bg-accent text-black font-medium hover:bg-cyan-300 transition-colors"
+              className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-accent text-black font-medium hover:bg-cyan-300 transition-colors"
             >
               <Plus className="w-4 h-4" />
               <span className="hidden sm:inline">Add Project</span>

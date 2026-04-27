@@ -34,14 +34,11 @@ export default function Gallery({ isAdmin, refreshKey, setIsAdmin }: Props) {
   const [loading, setLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
 
-
   const handleLogout = () => {
     setAuthToken(null);
     setIsAdmin(false);
     navigate('/');
   };
-  
-
 
   const fetchProjects = async () => {
     setLoading(true);
@@ -58,10 +55,12 @@ export default function Gallery({ isAdmin, refreshKey, setIsAdmin }: Props) {
     }
   };
 
+  // Initial load + refresh
   useEffect(() => {
     fetchProjects();
   }, [refreshKey]);
 
+  // Auto-refresh every 15 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       fetchProjects();
@@ -138,20 +137,23 @@ export default function Gallery({ isAdmin, refreshKey, setIsAdmin }: Props) {
             </p>
           </div>
 
-          {/* Controls - stacked on mobile, right-aligned on desktop */}
+          {/* Controls */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 lg:gap-6 lg:justify-end">
-            <div className="flex items-center gap-3 justify-between">
-              { isAdmin && (
+            <div className="flex items-center gap-3">
+              {/* Logout Button - only when admin */}
+              {isAdmin && (
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+                  className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-sm font-medium"
                 >
-                <LogOut className="w-5 h-5" />
-                <span className="font-medium">Logout</span>
-              </button>)}
+                  <LogOut className="w-5 h-5" />
+                  Logout
+                </button>
+              )}
+
               <button
                 onClick={fetchProjects}
-                className="flex items-center gap-2 px-5 py-3 glass rounded-3xl text-sm font-medium hover:text-accent transition-colors sm:w-auto"
+                className="flex items-center gap-2 px-5 py-3 glass rounded-3xl text-sm font-medium hover:text-accent transition-colors"
               >
                 <RefreshCw className="w-4 h-4" />
                 Refresh
