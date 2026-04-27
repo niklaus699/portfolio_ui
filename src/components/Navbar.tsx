@@ -29,7 +29,7 @@ export default function Navbar({ isAdmin, setIsAdmin, onAddClick }: Props) {
         {/* Logo - Tight on mobile */}
         <Link to="/" className="flex items-center md:gap-3">
           <span className="text-3xl font-heading tracking-tighter">Nicks Realm</span>
-          <span className="hidden sm:inlinetext-accent text-2xl">◉</span>
+          <span className="hidden sm:inline text-accent text-2xl">◉</span>
         </Link>
 
         {/* Right side */}
