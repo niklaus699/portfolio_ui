@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 function App() {
   const [isAdmin, setIsAdmin] = useState(!!localStorage.getItem('adminToken'));
   const [showAddModal, setShowAddModal] = useState(false);
-  const [refreshKey, setRefreshKey] = useState(0);   // ← Triggers gallery refresh
+  const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
@@ -19,7 +19,7 @@ function App() {
   }, []);
 
   const handleProjectAdded = () => {
-    setRefreshKey(prev => prev + 1);   // Forces Gallery to refetch
+    setRefreshKey(prev => prev + 1);
   };
 
   return (
@@ -27,7 +27,6 @@ function App() {
       <div className="min-h-screen">
         <Navbar 
           isAdmin={isAdmin} 
-          setIsAdmin={setIsAdmin} 
           onAddClick={() => setShowAddModal(true)} 
         />
         
@@ -35,7 +34,13 @@ function App() {
           <Routes>
             <Route 
               path="/" 
-              element={<Gallery isAdmin={isAdmin} refreshKey={refreshKey} />} 
+              element={
+                <Gallery 
+                  isAdmin={isAdmin} 
+                  refreshKey={refreshKey} 
+                  setIsAdmin={setIsAdmin} 
+                />
+              } 
             />
             <Route path="/project/:slug" element={<ProjectDetail />} />
             <Route path="/admin/login" element={<AdminLogin setIsAdmin={setIsAdmin} />} />
